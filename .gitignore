@@ -1,0 +1,14 @@
+# ESP-IDF
+firmware/build/
+firmware/sdkconfig.old
+
+# Credentials
+firmware/components/secrets/include/secrets.h
+.env
+
+# Web compiled binary
+grocery_web/grocery-web
+
+# Editor/system
+.vscode/
+.DS_Store

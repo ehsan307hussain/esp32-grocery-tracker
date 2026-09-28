@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{.Title}}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <h1>Grocery List Tracker</h1>
+      <p class="subtitle">ESP32 + Go + MQTT</p>
+    </header>
+
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/list">Shopping List</a>
+      <a href="/catalog">Catalog</a>
+    </nav>
+
+    <main class="card">
+      <h2>{{.Title}}</h2>
+      <p>Use this app to manage the shopping list and grocery catalog from your phone or browser.</p>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-number">{{.MissingCount}}</div>
+          <div class="stat-label">Missing Items</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">{{.ActiveCount}}</div>
+          <div class="stat-label">Active Catalog Items</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">{{.ArchivedCount}}</div>
+          <div class="stat-label">Archived Items</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>MQTT Status</h3>
+        {{if .MQTTEnabled}}
+          {{if .MQTTConnected}}
+            <p><span class="status-badge have">CONNECTED</span></p>
+          {{else}}
+            <p><span class="status-badge missing">DISCONNECTED</span></p>
+          {{end}}
+        {{else}}
+          <p><span class="status-badge neutral">DISABLED</span></p>
+        {{end}}
+      
+    </main>
+  </div>
+</body>
+</html>

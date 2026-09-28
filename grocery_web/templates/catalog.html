@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{.Title}} - Grocery Tracker</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <h1>Grocery Tracker</h1>
+      <p class="subtitle">Catalog</p>
+    </header>
+
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/list">Shopping List</a>
+      <a href="/catalog">Catalog</a>
+    </nav>
+
+    <main class="card">
+      <h2>{{.Title}}</h2>
+
+      {{if .MQTTEnabled}}
+        {{if .MQTTConnected}}
+          <p><span class="status-badge have">MQTT CONNECTED</span></p>
+        {{else}}
+          <p><span class="status-badge missing">MQTT DISCONNECTED</span></p>
+        {{end}}
+      {{else}}
+        <p><span class="status-badge neutral">MQTT DISABLED</span></p>
+      {{end}}
+
+      {{if .Error}}
+        <div class="message-box">{{.Error}}</div>
+      {{end}}
+      <div class="section">
+  <form method="POST" action="/actions/catalog/sync">
+    <button type="submit" class="btn btn-sync">Sync Catalog to ESP32</button>
+  </form>
+</div>
+
+      <div class="section form-card">
+  <h3>Add Catalog Item</h3>
+  <form method="POST" action="/actions/catalog/upsert" class="catalog-form">
+    <input type="text" name="name" placeholder="Item name" required>
+
+    <select name="category" required>
+      <option value="">Select category</option>
+      <option value="Pantry">Pantry</option>
+      <option value="Fridge">Fridge</option>
+      <option value="Cleaning">Cleaning</option>
+    </select>
+
+    <button type="submit" class="btn">Add Item</button>
+  </form>
+</div>
+
+      {{if .Items}}
+        <div class="item-list">
+          {{range .Items}}
+            <div class="item-row">
+              <div class="item-main">
+                <div class="item-name">{{.Name}}</div>
+                <div class="item-meta">ID: {{.ID}} | Category: {{.Category}}</div>
+              </div>
+
+              <div class="actions">
+                {{if eq .State "MISSING"}}
+                  <span class="status-badge missing">MISSING</span>
+                {{else}}
+                  <span class="status-badge have">HAVE</span>
+                {{end}}
+
+                <form method="POST" action="/actions/list/add">
+                  <input type="hidden" name="id" value="{{.ID}}">
+                  <button type="submit" class="btn">Add to List</button>
+                </form>
+
+                <form method="POST" action="/actions/catalog/delete">
+                  <input type="hidden" name="id" value="{{.ID}}">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          {{end}}
+        </div>
+      {{else}}
+        <p>No catalog items found.</p>
+      {{end}}
+    </main>
+  </div>
+</body>
+</html>

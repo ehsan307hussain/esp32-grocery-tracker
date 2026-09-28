@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{.Title}} - Grocery Tracker</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <h1>Grocery Tracker</h1>
+      <p class="subtitle">Shopping List</p>
+    </header>
+
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/list">Shopping List</a>
+      <a href="/catalog">Catalog</a>
+    </nav>
+
+    <main class="card">
+  <div class="page-title-row">
+    <h2>{{.Title}}</h2>
+<a href="/list/download" class="btn btn-download">Download List</a>  </div>
+      {{if .MQTTEnabled}}
+        {{if .MQTTConnected}}
+          <p><span class="status-badge have">MQTT CONNECTED</span></p>
+        {{else}}
+          <p><span class="status-badge missing">MQTT DISCONNECTED</span></p>
+        {{end}}
+      {{else}}
+        <p><span class="status-badge neutral">MQTT DISABLED</span></p>
+      {{end}}
+
+      {{if .CategoryGroups}}
+        {{range .CategoryGroups}}
+          <div class="section">
+            <h3>{{.Name}}</h3>
+
+            <div class="shopping-group">
+              {{range .Items}}
+                <div class="shopping-item-row">
+                  <div class="shopping-item-name">{{.Name}}</div>
+
+                  <form method="POST" action="/actions/list/have">
+                    <input type="hidden" name="id" value="{{.ID}}">
+                    <button type="submit" class="btn">Mark Bought</button>
+                  </form>
+                </div>
+              {{end}}
+            </div>
+          </div>
+        {{end}}
+      {{else}}
+        <p>No missing items.</p>
+      {{end}}
+    </main>
+  </div>
+</body>
+</html>

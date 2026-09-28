@@ -1,0 +1,294 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  color: #222;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.site-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 1.9rem;
+}
+
+.subtitle {
+  margin-top: 6px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #0b63c9;
+  background: #eaf2ff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.nav a:hover {
+  background: #dce9ff;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.section {
+  margin-top: 24px;
+}
+
+.form-card {
+  background: #f7f9fc;
+  border: 1px solid #e7ebf2;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.catalog-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.catalog-form input,
+.catalog-form select {
+  padding: 10px 12px;
+  border: 1px solid #ccd4e0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  background: white;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.stat-box {
+  background: #f7f9fc;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid #e7ebf2;
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.item-list {
+  margin-top: 18px;
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid #ececec;
+}
+
+.item-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.item-name {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.item-meta {
+  font-size: 0.92rem;
+  color: #666;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.actions form {
+  margin: 0;
+}
+
+.status-badge {
+  min-width: 90px;
+  text-align: center;
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: bold;
+}
+
+.status-badge.missing {
+  background: #ffe5e5;
+  color: #b42318;
+}
+
+.status-badge.have {
+  background: #e7f7ea;
+  color: #137333;
+}
+
+.status-badge.neutral {
+  background: #eef1f5;
+  color: #4b5563;
+}
+
+.btn {
+  border: none;
+  background: #0b63c9;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background: #094f9f;
+}
+
+.btn-danger {
+  background: #c62828;
+}
+
+.btn-danger:hover {
+  background: #9f1f1f;
+}
+
+.message-box,
+.error-box {
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.message-box {
+  background: #eef6ff;
+  color: #0b63c9;
+  border: 1px solid #cfe2ff;
+}
+
+.error-box {
+  background: #ffe5e5;
+  color: #b42318;
+  border: 1px solid #f3b3b3;
+}
+
+.shopping-group {
+  margin-top: 10px;
+}
+
+.shopping-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #ececec;
+}
+
+.shopping-item-name {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.shopping-item-row form {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 700px) {
+  .item-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions {
+    justify-content: flex-start;
+  }
+
+  .shopping-item-row {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .shopping-item-name {
+    flex: 1;
+  }
+}
+.page-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.page-title-row h2 {
+  margin: 0;
+}
+.btn-download {
+  background: #16a34a;   /* nice green */
+}
+
+.btn-download:hover {
+  background: #12833c;
+}
+.btn-sync {
+  background: #7c3aed;
+}
+
+.btn-sync:hover {
+  background: #6528c8;
+}
